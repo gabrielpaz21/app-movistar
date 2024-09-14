@@ -54,7 +54,8 @@
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +109,8 @@
             android:layout_marginBottom="4dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
             <include
                 android:id="@+id/plan_shortcut"
                 layout="@layout/shortcut"/>
@@ -118,7 +120,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
             <include
                 android:id="@+id/store_shortcut"
                 layout="@layout/shortcut"/>
