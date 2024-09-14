@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="156dp"
+    android:layout_height="133dp"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_background"
+    android:layout_marginBottom="16dp">
+
+    <LinearLayout
+        android:layout_width="123dp"
+        android:layout_height="101dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/plans"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Planes"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opciones para ti"
+                android:textColor="#666"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
