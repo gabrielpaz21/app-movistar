@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movistar App</string>
+    <string name="shortcutImage">imagen para los accesos directos</string>
+    <string name="blueBow">blue bow image</string>
+    <string name="greenBow">green bow image</string>
+    <string name="generalBanner">general banner image</string>
+    <string name="welcomeToMovistar">Welcome to Movistar</string>
+    <string name="cutOffDateTitle">Details of your consumption</string>
+    <string name="cutOffDateText">Your cut-off date is: 25/10/2024</string>
+    <string name="shortcutsTitle">Shortcuts</string>
+    <string name="youHaveLeft">You have left</string>
+    <string name="balanceTitle">Balance</string>
+    <string name="dateTitle">Data</string>
+    <string name="dataLimitText">From 5600</string>
+
+    <string name="plansText">Plans</string>
+    <string name="optionsForYouText">Options for you</string>
+    <string name="contactUsText">Contact us</string>
+    <string name="managementChannelsText">Management channels</string>
+    <string name="storeText">Store</string>
+    <string name="buyLineText">Buy a line</string>
+    <string name="movistarClubText">Movistar Club</string>
+    <string name="benefitsText">Benefits</string>
+
+</resources>

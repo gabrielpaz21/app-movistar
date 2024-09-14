@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        setupShortcut(R.id.plan_shortcut, R.drawable.plans, "Planes", "Opciones para ti")
-        setupShortcut(R.id.contact_shortcut, R.drawable.contact_us, "Contáctanos", "Canales de gestión")
-        setupShortcut(R.id.store_shortcut, R.drawable.store, "Tienda", "Compra una línea")
-        setupShortcut(R.id.club_shortcut, R.drawable.movistar_club, "Club Movistar", "Beneficios")
+        setupShortcut(R.id.plan_shortcut, R.drawable.plans, getString(R.string.plansText), getString(R.string.optionsForYouText))
+        setupShortcut(R.id.contact_shortcut, R.drawable.contact_us, getString(R.string.contactUsText), getString(R.string.managementChannelsText))
+        setupShortcut(R.id.store_shortcut, R.drawable.store, getString(R.string.storeText), getString(R.string.buyLineText))
+        setupShortcut(R.id.club_shortcut, R.drawable.movistar_club, getString(R.string.movistarClubText), getString(R.string.benefitsText))
 
     }
 

@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¡Hola, Fernando!"
+            android:text="@string/welcomeToMovistar"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
     </LinearLayout>
@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/generalBanner"
             android:src="@drawable/general_banner"/>
     </LinearLayout>
 
@@ -65,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detalles de tus consumos"
+                android:text="@string/cutOffDateTitle"
                 android:textSize="22sp"
                 android:layout_marginBottom="4dp"/>
 
@@ -73,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Tu fecha de corte es el: 25/10/2024"
+                android:text="@string/cutOffDateText"
                 android:textColor="@color/gray"/>
         </LinearLayout>
 
@@ -104,7 +105,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accesos directos"
+            android:text="@string/shortcutsTitle"
             android:textSize="22sp"
             android:layout_marginBottom="4dp"/>
         <LinearLayout
