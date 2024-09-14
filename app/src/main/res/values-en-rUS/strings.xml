@@ -23,4 +23,10 @@
     <string name="movistarClubText">Movistar Club</string>
     <string name="benefitsText">Benefits</string>
 
+    <string name="noInternetConnection">No Internet connection</string>
+    <string name="noBrowserFound">No web browser found</string>
+    <string name="insufficientPermissions">Insufficient permissions to open the URL</string>
+    <string name="errorOpeningUrl">An error occurred while trying to open the URL</string>
+
+
 </resources>

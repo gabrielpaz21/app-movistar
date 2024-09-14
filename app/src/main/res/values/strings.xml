@@ -22,4 +22,10 @@
     <string name="movistarClubText">Club Movistar</string>
     <string name="benefitsText">Beneficios</string>
 
+    <string name="noInternetConnection">No hay conexión a Internet</string>
+    <string name="noBrowserFound">No se encontró ningún navegador web</string>
+    <string name="insufficientPermissions">Permisos insuficientes para abrir la URL</string>
+    <string name="errorOpeningUrl">Ocurrió un error al intentar abrir la URL</string>
+
+
 </resources>

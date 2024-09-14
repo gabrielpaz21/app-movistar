@@ -1,11 +1,8 @@
 package com.example.movistarapp
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageButton
@@ -18,45 +15,53 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        handleWindowInsets()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        setupShortcuts()
+    }
+
+    private fun handleWindowInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    }
+
+    private fun setupShortcuts() {
         setupShortcut(
             R.id.plan_shortcut,
             R.drawable.plans,
             getString(R.string.plansText),
             getString(R.string.optionsForYouText),
-            "https://www.movistar.com.ve/Particulares/planes-movistar-plus.html"
+            UrlConstants.PLAN_URL
         )
         setupShortcut(
             R.id.contact_shortcut,
             R.drawable.contact_us,
             getString(R.string.contactUsText),
             getString(R.string.managementChannelsText),
-            "https://www.movistar.com.ve/Particulares/Autogestion.html"
+            UrlConstants.CONTACT_URL
         )
         setupShortcut(
             R.id.store_shortcut,
             R.drawable.store,
             getString(R.string.storeText),
             getString(R.string.buyLineText),
-            "https://tienda.movistar.com.ve/linea-nueva"
+            UrlConstants.STORE_URL
         )
         setupShortcut(
             R.id.club_shortcut,
             R.drawable.movistar_club,
             getString(R.string.movistarClubText),
             getString(R.string.benefitsText),
-            "https://www.movistar.com.ve/Particulares/Antesala_club_movistar.html"
+            UrlConstants.CLUB_URL
         )
-
     }
 
     private fun setupShortcut(
@@ -69,30 +74,7 @@ class MainActivity : AppCompatActivity() {
         val cardView: CardView = findViewById(cardViewId)
         val shortcutButton: ImageButton = cardView.findViewById(R.id.imageView)
         shortcutButton.setOnClickListener {
-            if (isInternetAvailable(this)) {
-                try {
-                    val url = Uri.parse(stringUrl)
-                    val intent = Intent(Intent.ACTION_VIEW, url)
-                    startActivity(intent)
-                } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(this, "No se encontró ningún navegador web", Toast.LENGTH_SHORT)
-                        .show()
-                } catch (e: SecurityException) {
-                    Toast.makeText(
-                        this,
-                        "Permisos insuficientes para abrir la URL",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } catch (e: Exception) {
-                    Toast.makeText(
-                        this,
-                        "Ocurrió un error al intentar abrir la URL",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            } else {
-                Toast.makeText(this, "No hay conexión a Internet", Toast.LENGTH_SHORT).show()
-            }
+            handleShortcutClick(stringUrl)
         }
         val title: TextView = cardView.findViewById(R.id.title)
         val subtitle: TextView = cardView.findViewById(R.id.subtitle)
@@ -101,16 +83,29 @@ class MainActivity : AppCompatActivity() {
         subtitle.text = subtitleText
     }
 
-    private fun isInternetAvailable(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork ?: return false
-        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-        return when {
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            else -> false
+    private fun handleShortcutClick(stringUrl: String) {
+        if (NetworkUtils.isInternetAvailable(this)) {
+            try {
+                val url = Uri.parse(stringUrl)
+                val intent = Intent(Intent.ACTION_VIEW, url)
+                startActivity(intent)
+            } catch (e: Exception) {
+                handleShortcutError(e)
+            }
+        } else {
+            showToast(getString(R.string.noInternetConnection))
         }
     }
 
+    private fun handleShortcutError(e: Exception) {
+        when (e) {
+            is ActivityNotFoundException -> showToast(getString(R.string.noBrowserFound))
+            is SecurityException -> showToast(getString(R.string.insufficientPermissions))
+            else -> showToast(getString(R.string.errorOpeningUrl))
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
 }
