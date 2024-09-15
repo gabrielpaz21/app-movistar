@@ -13,20 +13,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.movistarapp.databinding.ActivityMainBinding
+import com.example.movistarapp.databinding.ShortcutBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
         handleWindowInsets()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setupShortcuts()
     }
 
     private fun handleWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -35,28 +40,28 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupShortcuts() {
         setupShortcut(
-            R.id.plan_shortcut,
+            binding.planShortcut,
             R.drawable.plans,
             getString(R.string.plansText),
             getString(R.string.optionsForYouText),
             UrlConstants.PLAN_URL
         )
         setupShortcut(
-            R.id.contact_shortcut,
+            binding.contactShortcut,
             R.drawable.contact_us,
             getString(R.string.contactUsText),
             getString(R.string.managementChannelsText),
             UrlConstants.CONTACT_URL
         )
         setupShortcut(
-            R.id.store_shortcut,
+            binding.storeShortcut,
             R.drawable.store,
             getString(R.string.storeText),
             getString(R.string.buyLineText),
             UrlConstants.STORE_URL
         )
         setupShortcut(
-            R.id.club_shortcut,
+            binding.clubShortcut,
             R.drawable.movistar_club,
             getString(R.string.movistarClubText),
             getString(R.string.benefitsText),
@@ -65,22 +70,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupShortcut(
-        cardViewId: Int,
+        shortcutBinding: ShortcutBinding,
         imageResource: Int,
         titleText: String,
         subtitleText: String,
         stringUrl: String
     ) {
-        val cardView: CardView = findViewById(cardViewId)
-        val shortcutButton: ImageButton = cardView.findViewById(R.id.imageView)
-        shortcutButton.setOnClickListener {
+        shortcutBinding.imageButton.setImageResource(imageResource)
+        shortcutBinding.title.text = titleText
+        shortcutBinding.subtitle.text = subtitleText
+        shortcutBinding.imageButton.setOnClickListener {
             handleShortcutClick(stringUrl)
         }
-        val title: TextView = cardView.findViewById(R.id.title)
-        val subtitle: TextView = cardView.findViewById(R.id.subtitle)
-        shortcutButton.setImageResource(imageResource)
-        title.text = titleText
-        subtitle.text = subtitleText
     }
 
     private fun handleShortcutClick(stringUrl: String) {
