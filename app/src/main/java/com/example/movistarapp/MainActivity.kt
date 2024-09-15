@@ -31,6 +31,19 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         handleWindowInsets()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        fetchUsers()
+        setupShortcuts()
+    }
+
+    private fun handleWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+
+    private fun fetchUsers() {
         apiService = RetrofitInstance.getInstance().create(ApiService::class.java)
         thread {
             try {
@@ -44,23 +57,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 } else {
                     runOnUiThread {
-                        System.out.println("Error: ${response.errorBody()?.string()}")
+                        showToast("Error: ${response.errorBody()?.string()}")
                     }
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    System.out.println("Exception: ${e.message}")
+                    showToast("Exception: ${e.message}")
                 }
             }
-        }
-        setupShortcuts()
-    }
-
-    private fun handleWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
         }
     }
 
@@ -78,10 +82,10 @@ class MainActivity : AppCompatActivity() {
                 val selectedNumber = mobileNumbers[position]
 
                 users.find { it.mobilNumber == selectedNumber }?.let {
-                    binding.name.text = "¡Hola ${it.name}!"
+                    binding.name.text = getString(R.string.greeting, it.name)
                     binding.numberPhone.text = it.mobilNumber
-                    binding.platform.text = it.platform.toString()
-//                    binding.cutOffDateText.text = it.cutOffDate
+                    binding.platform.text = it.platform.toLocalizedString(this@MainActivity)
+                    binding.cutOffDate.text = getString(R.string.cutOffDateText, it.cutOffDate)
                     binding.balance.balanceAmount.text = it.balance.toPlainString()
                     binding.data.amount.text=it.data.toString()
                 }
@@ -163,4 +167,5 @@ class MainActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
 }

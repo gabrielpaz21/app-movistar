@@ -162,10 +162,11 @@
                 android:layout_marginBottom="4dp"/>
 
             <TextView
+                android:id="@+id/cutOffDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="@string/cutOffDateText"
+                android:text="@string/cutOffDateTextTool"
                 android:textColor="@color/gray"/>
         </LinearLayout>
 

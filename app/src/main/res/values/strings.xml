@@ -6,12 +6,16 @@
     <string name="generalBanner">imagen de banner general</string>
     <string name="welcomeToMovistar">Bienvenido a movistar</string>
     <string name="cutOffDateTitle">Detalles de tus consumos</string>
-    <string name="cutOffDateText">Tu fecha de corte es el: 25/10/2024</string>
+    <string name="cutOffDateTextTool">Tu fecha de corte es el: 25/10/2024</string>
+    <string name="cutOffDateText">Tu Fecha de corte es el: %1$s</string>
     <string name="shortcutsTitle">Accesos directos</string>
     <string name="youHaveLeft">Te quedan</string>
     <string name="balanceTitle">Saldo</string>
     <string name="dateTitle">Datos</string>
     <string name="dataLimitText">De 5600</string>
+    <string name="platformPrepaid">Prepago</string>
+    <string name="platformPostpaid">Postpago</string>
+    <string name="greeting">¡Hola, %1$s!</string>
 
     <string name="plansText">Planes</string>
     <string name="optionsForYouText">Opciones para ti</string>
