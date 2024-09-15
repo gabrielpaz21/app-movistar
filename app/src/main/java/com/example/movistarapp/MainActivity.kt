@@ -14,9 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.movistarapp.databinding.ActivityMainBinding
 import com.example.movistarapp.databinding.ShortcutBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -79,10 +76,15 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long){
                 val selectedNumber = mobileNumbers[position]
-                binding.NumerPhone.text = selectedNumber
 
-                //TODO NumerPhone,nombre,saldo, datos,plataforma
-
+                users.find { it.mobilNumber == selectedNumber }?.let {
+                    binding.name.text = "¡Hola ${it.name}!"
+                    binding.numberPhone.text = it.mobilNumber
+                    binding.platform.text = it.platform.toString()
+//                    binding.cutOffDateText.text = it.cutOffDate
+                    binding.balance.balanceAmount.text = it.balance.toPlainString()
+                    binding.data.amount.text=it.data.toString()
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}

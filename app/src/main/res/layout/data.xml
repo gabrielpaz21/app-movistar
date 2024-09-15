@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -17,14 +17,14 @@
         android:textColor="#000"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/subtitleBalance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/subtitle"
+        android:id="@+id/subtitleBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -32,10 +32,10 @@
         android:textColor="#666"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="@+id/titleData"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintStart_toStartOf="@+id/titleData"
+        app:layout_constraintTop_toBottomOf="@+id/titleData" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -47,11 +47,11 @@
         android:scaleType="centerInside"
         android:src="@drawable/blue_bow"
         android:contentDescription="@string/blueBow"
-        app:layout_constraintBottom_toTopOf="@+id/amount2"
+        app:layout_constraintBottom_toTopOf="@+id/limitAmount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/subtitleBalance" />
 
     <TextView
         android:id="@+id/amount"
@@ -66,7 +66,7 @@
         tools:text="3500 MB" />
 
     <TextView
-        android:id="@+id/amount2"
+        android:id="@+id/limitAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dataLimitText"

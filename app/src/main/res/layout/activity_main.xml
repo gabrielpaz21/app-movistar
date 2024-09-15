@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -89,7 +90,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/NumerPhone"
+                    android:id="@+id/numberPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:letterSpacing="0.02"
@@ -169,13 +170,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <include layout="@layout/balance" />
+            <include layout="@layout/balance"
+                android:id="@+id/balance"/>
 
-            <include layout="@layout/data" />
+            <include layout="@layout/data"
+                android:id="@+id/data"/>
 
         </LinearLayout>
     </LinearLayout>
